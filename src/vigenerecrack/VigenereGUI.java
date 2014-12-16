@@ -21,6 +21,10 @@ public class VigenereGUI extends javax.swing.JFrame {
     ButtonGroup bGroup = new ButtonGroup();
     bGroup.add(jRadioButton1);
     bGroup.add(jRadioButton2);
+    ButtonGroup vigGroup = new ButtonGroup();
+    vigGroup.add(vigEncipherBut);
+    vigGroup.add(vigDecipherBut);
+    
   }  
 
   /**
@@ -33,6 +37,7 @@ public class VigenereGUI extends javax.swing.JFrame {
   private void initComponents() {
 
     buttonGroup1 = new javax.swing.ButtonGroup();
+    buttonGroup2 = new javax.swing.ButtonGroup();
     jTabbedPane1 = new javax.swing.JTabbedPane();
     jPanel1 = new javax.swing.JPanel();
     jLabel2 = new javax.swing.JLabel();
@@ -46,6 +51,20 @@ public class VigenereGUI extends javax.swing.JFrame {
     jRadioButton1 = new javax.swing.JRadioButton();
     jRadioButton2 = new javax.swing.JRadioButton();
     jButton1 = new javax.swing.JButton();
+    jPanel2 = new javax.swing.JPanel();
+    vigKeyLabel = new javax.swing.JLabel();
+    vigEncipherBut = new javax.swing.JRadioButton();
+    vigDecipherBut = new javax.swing.JRadioButton();
+    vigTextField = new javax.swing.JTextField();
+    vigTextLabel = new javax.swing.JLabel();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    vigTextArea = new javax.swing.JTextArea();
+    vigResultLabel = new javax.swing.JLabel();
+    jScrollPane4 = new javax.swing.JScrollPane();
+    vigResultArea = new javax.swing.JTextArea();
+    vigSubmitBut = new javax.swing.JButton();
+    jLabel1 = new javax.swing.JLabel();
+    changeChar = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +130,7 @@ public class VigenereGUI extends javax.swing.JFrame {
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(142, 142, 142)
             .addComponent(jButton1)))
-        .addContainerGap(49, Short.MAX_VALUE))
+        .addContainerGap(63, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,12 +149,118 @@ public class VigenereGUI extends javax.swing.JFrame {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jLabel4)
           .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
         .addComponent(jButton1)
         .addGap(21, 21, 21))
     );
 
     jTabbedPane1.addTab("Caesar", jPanel1);
+
+    vigKeyLabel.setText("Key:");
+
+    vigEncipherBut.setText("Encipher");
+    vigEncipherBut.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        vigEncipherButActionPerformed(evt);
+      }
+    });
+
+    vigDecipherBut.setText("Decipher");
+    vigDecipherBut.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        vigDecipherButActionPerformed(evt);
+      }
+    });
+
+    vigTextLabel.setText("Text:");
+
+    vigTextArea.setColumns(20);
+    vigTextArea.setRows(5);
+    jScrollPane3.setViewportView(vigTextArea);
+
+    vigResultLabel.setText("Result:");
+
+    vigResultArea.setColumns(20);
+    vigResultArea.setRows(5);
+    jScrollPane4.setViewportView(vigResultArea);
+
+    vigSubmitBut.setText("Submit");
+    vigSubmitBut.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        vigSubmitButActionPerformed(evt);
+      }
+    });
+
+    jLabel1.setText("Cipher characters (if different than Alphabet A-Z)");
+
+    changeChar.setToolTipText("Enter only if different than alphabet A-Z");
+
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(92, 92, 92)
+            .addComponent(vigEncipherBut)
+            .addGap(34, 34, 34)
+            .addComponent(vigDecipherBut))
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(15, 15, 15)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(vigResultLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(vigKeyLabel)
+                .addGap(18, 18, 18)
+                .addComponent(vigTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(vigTextLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addComponent(changeChar)
+                  .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))))
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(141, 141, 141)
+            .addComponent(vigSubmitBut))
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(39, 39, 39)
+            .addComponent(jLabel1)))
+        .addContainerGap(57, Short.MAX_VALUE))
+    );
+    jPanel2Layout.setVerticalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addGap(12, 12, 12)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(vigKeyLabel)
+          .addComponent(vigTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(vigEncipherBut)
+          .addComponent(vigDecipherBut, javax.swing.GroupLayout.Alignment.TRAILING))
+        .addGap(12, 12, 12)
+        .addComponent(jLabel1)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(changeChar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(vigResultLabel))
+            .addGap(18, 18, 18)
+            .addComponent(vigSubmitBut))
+          .addComponent(vigTextLabel))
+        .addContainerGap())
+    );
+
+    jTabbedPane1.addTab("Vigenere", jPanel2);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -143,7 +268,7 @@ public class VigenereGUI extends javax.swing.JFrame {
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+        .addComponent(jTabbedPane1)
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -198,6 +323,56 @@ public class VigenereGUI extends javax.swing.JFrame {
     }
     
   }//GEN-LAST:event_jButton1ActionPerformed
+
+  private void vigEncipherButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigEncipherButActionPerformed
+    vigEncipherBut.setSelected(true);
+  }//GEN-LAST:event_vigEncipherButActionPerformed
+
+  private void vigSubmitButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigSubmitButActionPerformed
+    String key = "";
+    String cipher = "";
+    String change = "";
+    String result = "";
+    int type = 0;
+    
+    Backend back = new Backend();
+    
+    if (vigEncipherBut.isSelected()) {
+      type = 1;
+    } else if (vigDecipherBut.isSelected()) {
+      type = 2;
+    }
+    
+    if (!"".equals(vigTextField.getText()) && !"".equals(vigTextArea.getText())) {
+      key = vigTextField.getText();
+      cipher = vigTextArea.getText();
+    } else if ("".equals(vigTextField.getText()) || "".equals(vigTextArea.getText())
+        || type == 0) {
+      JOptionPane.showMessageDialog(rootPane, "Please Ensure a Key, Text and"
+          + "a Radio Button is selected/filled", "Enter key/selection", 
+          JOptionPane.ERROR_MESSAGE);
+    }
+    
+    if (!"".equals(changeChar.getText())) {
+      change = changeChar.getText();
+    }
+    
+    if (type == 1) {
+      result = back.vigenereEncipher(cipher, key);
+      vigResultArea.setText(result);
+    } else if (type == 2) {
+      result = back.vigenereDecipher(cipher, key);
+      vigResultArea.setText(result);
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "Please Select a Radio Button", 
+          "Select Cipher/Decipher", JOptionPane.ERROR_MESSAGE);
+    }
+    
+  }//GEN-LAST:event_vigSubmitButActionPerformed
+
+  private void vigDecipherButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigDecipherButActionPerformed
+    vigDecipherBut.setSelected(true);
+  }//GEN-LAST:event_vigDecipherButActionPerformed
   
   /**
    * @param args the command line arguments
@@ -237,18 +412,33 @@ public class VigenereGUI extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.ButtonGroup buttonGroup1;
+  private javax.swing.ButtonGroup buttonGroup2;
+  private javax.swing.JTextField changeChar;
   private javax.swing.JButton jButton1;
+  private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
   private javax.swing.JRadioButton jRadioButton1;
   private javax.swing.JRadioButton jRadioButton2;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JScrollPane jScrollPane4;
   private javax.swing.JTabbedPane jTabbedPane1;
   private javax.swing.JTextArea jTextArea1;
   private javax.swing.JTextArea jTextArea2;
   private javax.swing.JTextField keyText;
+  private javax.swing.JRadioButton vigDecipherBut;
+  private javax.swing.JRadioButton vigEncipherBut;
+  private javax.swing.JLabel vigKeyLabel;
+  private javax.swing.JTextArea vigResultArea;
+  private javax.swing.JLabel vigResultLabel;
+  private javax.swing.JButton vigSubmitBut;
+  private javax.swing.JTextArea vigTextArea;
+  private javax.swing.JTextField vigTextField;
+  private javax.swing.JLabel vigTextLabel;
   // End of variables declaration//GEN-END:variables
 }

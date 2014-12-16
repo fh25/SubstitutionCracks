@@ -22,11 +22,11 @@ public class Backend {
     String upperCased = text.toUpperCase();
     String result;
     char temp[] = upperCased.toCharArray();
+    
     for (int i = 0; i < temp.length; ++i) {
       shift = (i+key) % 26;
       temp[i] = alpha[shift];
     }
-    //result = Arrays.toString(temp);
     result = Arrays.toString(temp).replace("[", "").replace("]", "").replace(",", "").replace(" ", "");
     return result;
   }
@@ -36,6 +36,7 @@ public class Backend {
     String upperCased = text.toUpperCase();
     String result;
     char temp[] = upperCased.toCharArray();
+    
     for (int i = 0; i < temp.length; ++i) {
       for (int j = 0; j < alpha.length; ++j) {
         if (temp[i] == alpha[j]) {
@@ -49,12 +50,69 @@ public class Backend {
     return result;
   } 
  
-  public void vigenereEncipher() {
-   
+  public String vigenereEncipher(String text, String key) {
+    int shift;
+    String result;
+    char tempText[] = text.toUpperCase().toCharArray();
+    char tempKey[] = key.toUpperCase().toCharArray();
+    int keyOfInts[] = new int[tempKey.length];
+    
+    for (int i = 0; i < tempKey.length; ++i) {
+      for (int j = 0; j < alpha.length; ++j) {
+        if (tempKey[i] == alpha[j]) {
+         keyOfInts[i] = j; 
+        }
+      }
+    }
+    
+    int move = 0;
+    for (int i = 0; i < tempText.length; ++i) {
+      for (int j = 0; j < alpha.length; ++j) {
+        if (tempText[i] == alpha[j]) {
+          if (move == keyOfInts.length) {
+            move = 0;
+          }
+          shift = (keyOfInts[move++] + j) % alpha.length;
+          tempText[i] = alpha[shift];
+          break;
+        }
+      }
+    }
+    result = Arrays.toString(tempText).replace("[", "").replace("]", "").replace(",", "").replace(" ", "");
+    return result;
+    
   }
   
-  public void vigenereDecipher() {
+  public String vigenereDecipher(String text, String key) {
+    int shift;
+    String result;
+    char tempText[] = text.toUpperCase().toCharArray();
+    char tempKey[] = key.toUpperCase().toCharArray();
+    int keyOfInts[] = new int[tempKey.length];
     
+    for (int i = 0; i < tempKey.length; ++i) {
+      for (int j = 0; j < alpha.length; ++j) {
+        if (tempKey[i] == alpha[j]) {
+         keyOfInts[i] = j; 
+        }
+      }
+    }
+    
+    int move = 0;
+    for (int i = 0; i < tempText.length; ++i) {
+      for (int j = 0; j < alpha.length; ++j) {
+        if (tempText[i] == alpha[j]) {
+          if (move == keyOfInts.length) {
+            move = 0;
+          }
+          shift = (alpha.length + j - keyOfInts[move++]) % alpha.length;
+          tempText[i] = alpha[shift];
+          break;
+        }
+      }
+    }
+    result = Arrays.toString(tempText).replace("[", "").replace("]", "").replace(",", "").replace(" ", "");
+    return result;
   }
   
 }
