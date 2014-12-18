@@ -64,7 +64,7 @@ public class VigenereGUI extends javax.swing.JFrame {
     vigResultArea = new javax.swing.JTextArea();
     vigSubmitBut = new javax.swing.JButton();
     jLabel1 = new javax.swing.JLabel();
-    changeChar = new javax.swing.JTextField();
+    changeCipherSet = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,7 +193,7 @@ public class VigenereGUI extends javax.swing.JFrame {
 
     jLabel1.setText("Cipher characters (if different than Alphabet A-Z)");
 
-    changeChar.setToolTipText("Enter only if different than alphabet A-Z");
+    changeCipherSet.setToolTipText("Enter only if different than alphabet A-Z");
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -221,7 +221,7 @@ public class VigenereGUI extends javax.swing.JFrame {
                 .addComponent(vigTextLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(changeChar)
+                  .addComponent(changeCipherSet)
                   .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))))
           .addGroup(jPanel2Layout.createSequentialGroup()
             .addGap(141, 141, 141)
@@ -245,7 +245,7 @@ public class VigenereGUI extends javax.swing.JFrame {
         .addGap(12, 12, 12)
         .addComponent(jLabel1)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(changeChar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(changeCipherSet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel2Layout.createSequentialGroup()
@@ -352,22 +352,27 @@ public class VigenereGUI extends javax.swing.JFrame {
           + "a Radio Button is selected/filled", "Enter key/selection", 
           JOptionPane.ERROR_MESSAGE);
     }
-    
-    if (!"".equals(changeChar.getText())) {
-      change = changeChar.getText();
-    }
-    
-    if (type == 1) {
+   
+    if (type == 1 && "".equals(changeCipherSet.getText())) {
       result = back.vigenereEncipher(cipher, key);
       vigResultArea.setText(result);
-    } else if (type == 2) {
+    } else if (type == 1 && !"".equals(changeCipherSet.getText())) {
+      change = changeCipherSet.getText();
+      result = back.vigenereCustomEncipher(cipher, change, key);
+      vigResultArea.setText(result);
+      
+    } else if (type == 2 && "".equals(changeCipherSet.getText())) {
       result = back.vigenereDecipher(cipher, key);
       vigResultArea.setText(result);
+    } else if (type == 2 && !"".equals(changeCipherSet.getText())) {
+      change = changeCipherSet.getText();
+      result = back.vigenereCustomDecipher(cipher, change, key);
+      vigResultArea.setText(result);
+      
     } else {
       JOptionPane.showMessageDialog(rootPane, "Please Select a Radio Button", 
           "Select Cipher/Decipher", JOptionPane.ERROR_MESSAGE);
     }
-    
   }//GEN-LAST:event_vigSubmitButActionPerformed
 
   private void vigDecipherButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigDecipherButActionPerformed
@@ -413,7 +418,7 @@ public class VigenereGUI extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.ButtonGroup buttonGroup1;
   private javax.swing.ButtonGroup buttonGroup2;
-  private javax.swing.JTextField changeChar;
+  private javax.swing.JTextField changeCipherSet;
   private javax.swing.JButton jButton1;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;

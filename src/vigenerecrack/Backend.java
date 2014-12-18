@@ -80,7 +80,39 @@ public class Backend {
     }
     result = Arrays.toString(tempText).replace("[", "").replace("]", "").replace(",", "").replace(" ", "");
     return result;
+  }
+  
+  public String vigenereCustomEncipher(String text, String change, String key) {
+    int shift;
+    String result;
+    char tempChange[] = change.toUpperCase().toCharArray();
+    char tempText[] = text.toUpperCase().toCharArray();
+    char tempKey[] = key.toUpperCase().toCharArray();
+    int keyOfInts[] = new int[tempKey.length];
     
+    for (int i = 0; i < tempKey.length; ++i) {
+      for (int j = 0; j < tempChange.length; ++j) {
+        if (tempKey[i] == tempChange[j]) {
+         keyOfInts[i] = j; 
+        }
+      }
+    }
+    
+    int move = 0;
+    for (int i = 0; i < tempText.length; ++i) {
+      for (int j = 0; j < tempChange.length; ++j) {
+        if (tempText[i] == tempChange[j]) {
+          if (move == keyOfInts.length) {
+            move = 0;
+          }
+          shift = (keyOfInts[move++] + j) % tempChange.length;
+          tempText[i] = tempChange[shift];
+          break;
+        }
+      }
+    }
+    result = Arrays.toString(tempText).replace("[", "").replace("]", "").replace(",", "").replace(" ", "");
+    return result;
   }
   
   public String vigenereDecipher(String text, String key) {
@@ -107,6 +139,39 @@ public class Backend {
           }
           shift = (alpha.length + j - keyOfInts[move++]) % alpha.length;
           tempText[i] = alpha[shift];
+          break;
+        }
+      }
+    }
+    result = Arrays.toString(tempText).replace("[", "").replace("]", "").replace(",", "").replace(" ", "");
+    return result;
+  }
+  
+  public String vigenereCustomDecipher(String text, String change, String key) {
+    int shift;
+    String result;
+    char tempChange[] = change.toUpperCase().toCharArray();
+    char tempText[] = text.toUpperCase().toCharArray();
+    char tempKey[] = key.toUpperCase().toCharArray();
+    int keyOfInts[] = new int[tempKey.length];
+    
+    for (int i = 0; i < tempKey.length; ++i) {
+      for (int j = 0; j < tempChange.length; ++j) {
+        if (tempKey[i] == tempChange[j]) {
+         keyOfInts[i] = j; 
+        }
+      }
+    }
+    
+    int move = 0;
+    for (int i = 0; i < tempText.length; ++i) {
+      for (int j = 0; j < tempChange.length; ++j) {
+        if (tempText[i] == tempChange[j]) {
+          if (move == keyOfInts.length) {
+            move = 0;
+          }
+          shift = (tempChange.length + j - keyOfInts[move++]) % tempChange.length;
+          tempText[i] = tempChange[shift];
           break;
         }
       }

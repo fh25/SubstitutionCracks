@@ -234,7 +234,7 @@
                                       <Component id="vigTextLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="changeChar" max="32767" attributes="0"/>
+                                          <Component id="changeCipherSet" max="32767" attributes="0"/>
                                           <Component id="jScrollPane3" pref="268" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -269,7 +269,7 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="changeChar" min="-2" max="-2" attributes="0"/>
+                      <Component id="changeCipherSet" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="12" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -366,7 +366,7 @@
                 <Property name="text" type="java.lang.String" value="Cipher characters (if different than Alphabet A-Z)"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="changeChar">
+            <Component class="javax.swing.JTextField" name="changeCipherSet">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Enter only if different than alphabet A-Z"/>
               </Properties>
